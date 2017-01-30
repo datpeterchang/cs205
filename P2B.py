@@ -1,4 +1,4 @@
-import numpy as np
+
 import multiprocessing as mp
 import time
 import matplotlib.pyplot as plt
