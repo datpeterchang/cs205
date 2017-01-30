@@ -17,7 +17,7 @@ def parallel(processes, jobs, wait_time):
 #for serial computing:
 def serial(jobs, wait_time):
 	start = time.time()
-	for i in range(0,jobs);
+	for i in range(0,jobs):
 		burnTime(wait_time)
 	return time.time()-start
 
