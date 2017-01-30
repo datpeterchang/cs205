@@ -7,6 +7,20 @@ import matplotlib.pyplot as plt
 def burnTime(t):
 	time.sleep(t)
 
+#for parallel computing
+def parallel(processes, jobs, wait_time):
+	start=time.time()
+	pool = mp.Pool(processes);
+	result = pool.map(burnTime(wait_time), range(jobs))
+	return time.time()-start
+	
+#for serial computing:
+def serial(jobs, wait_time):
+	start = time.time()
+	for i in range(0,jobs);
+		burnTime(wait_time)
+	return time.time()-start
+
 # Main
 if __name__ == '__main__':
 	N = 16 # The number of jobs
@@ -17,16 +31,16 @@ if __name__ == '__main__':
 
   # Use a variety of wait times
 	ratio = []
-	wait_time = []
+	wait_time = [10**(-6)]
 
 	for t in wait_time:
-		# Compute jobs serially and in parallel
+		# Compute jobs serially and in parallel		
 		# Use time.time() to compute the elapsed time for each
-		serialTime = 1;
-		parallelTime = 1;
+		serialTime = serial(N,t);
+		parallelTime = parallel(P,N,t);
 
 		# Compute the ratio of these times
-		#ratio.append(serialTime/parallelTime)
+		ratio.append(serialTime/parallelTime)
 
 	# Plot the results
 	plt.plot(wait_time, ratio, '-ob')
